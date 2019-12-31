@@ -1,12 +1,11 @@
 import React from 'react';
 import wallpaper from './resources/img/wallpaper.jpg';
-import './App.css';
-import './resources/css/finkheavyfont.css';
+import './resources/css/finkheavy/finkheavyfont.css';
 
 function App() {
   return (
     <div style={ style } > 
-      
+      <h1>Animal Crossing</h1>
     </div>
   );
 }
