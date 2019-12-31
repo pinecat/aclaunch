@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+    - "stable"
+cache:
+    ./node_modules
+script:
+    - yarn install
+    - yarn build
+on:
+    branch master
