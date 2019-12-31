@@ -5,7 +5,7 @@
 ---
 
 ## Introduction
-As I'm sure many others are, I too am quite excited for the upcoming Animal Crossing: New Horizons.  As such, I built a very simple [React](https://reactjs.org) app which counts down the days, hours, minutes, and seconds until the release of ACNH on March 20, 2020.
+While I know I'm not the only one, it's still difficult for me to contain my excitement for the upcoming Animal Crossing: New Horizons.  As such, I built a very simple [React](https://reactjs.org) app which counts down the days, hours, minutes, and seconds until the release of ACNH on March 20, 2020.
 
 You can find the website here: [www.aclaunch.net](https://www.aclaunch.net).
 
@@ -17,3 +17,6 @@ $ cd aclaunch
 $ yarn install
 $ yarn build
 ```
+
+## Contributing
+If you're interesting in contributing to the website, feel free to message me directly, or simply submit a pull request.
