@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import wallpaper from './resources/img/wallpaper.jpg';
 import './App.css';
+import './resources/css/finkheavyfont.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={ style } > 
+      
     </div>
   );
+}
+
+const style = {
+  width: '1920px',
+  height: '1080px',
+  backgroundImage: `url(${ wallpaper })`,
+  fontFamily: 'FinkHeavy',
+  fontWeight: '900',
 }
 
 export default App;
