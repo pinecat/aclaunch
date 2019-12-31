@@ -21,9 +21,13 @@ class Timer extends Component {
     this.timer = 0;                                               // timer for the countdown
     this.later = new Date(props.cntdwnDate).getTime();            // create future date using cntwnDate from props
     let time = this.calculate(this.later - new Date().getTime()); // calculate countdown for page load
+    let expired = false;                                          // variable to hold expired
+    if (time.seconds <= 0) {                                      // if we're past the countdown date...
+      expired = true;                                             // ...set expired to true
+    }
     this.state = {                                                // set the state (intialize the state)
       time: time,
-      expired: false,
+      expired: expired,
     }
     this.tick = this.tick.bind(this);                             // bind tick()
     this.calculate = this.calculate.bind(this);                   // bind calculate()
@@ -75,6 +79,12 @@ class Timer extends Component {
   tick() {
     var now = new Date().getTime();       // get current date and time
     var distance = this.later - now;      // figure out distance between both datetimes
+    if (distance <= 0) {                  // if distance is less than or equal to zero...
+      clearInterval(this.timer)           // ...we have finished the countdown, so clear the interval
+      this.setState({                     // and set expired to true
+        expired: true,
+      });
+    }
     var time = this.calculate(distance);  // calculate the days, hours, mins, and secs
     this.setState({                       // set the state
       time: time,
@@ -92,16 +102,35 @@ class Timer extends Component {
   render() {
     return (
       <div>
-        <h1 style={ headerStyle } >
-          { this.state.time.days } Days { this.state.time.hours } Hours { this.state.time.minutes } Minutes { this.state.time.seconds } Seconds 
-        </h1>
+        { this.state.expired ? (
+          <div>
+            <h2 style={ headerStyle }>Well what are you waiting for?  It's out!  Go buy the game!</h2>
+            <h3 style={{ color: '#000000' }}>
+              <a href="https://nintendo.com/games/switch" target="_blank" rel="noopener noreferrer">Nintendo</a>{ ' ' } | { ' ' }
+              <a href="https://amazon.com" target="_blank" rel="noopener noreferrer">Amazon</a>{ ' ' } | { ' ' }
+              <a href="https://gamestop.com" target="_blank" rel="noopener noreferrer">Gamestop</a>
+            </h3>
+          </div>
+        ) : (
+          <div>
+            <h2 style={ headerStyle }>There are</h2>
+            <h1 style={ timerStyle }>
+              { this.state.time.days } Days { this.state.time.hours } Hours { this.state.time.minutes } Minutes { this.state.time.seconds } Seconds 
+            </h1>
+            <h2 style={ headerStyle }>Until Animal Crossing New Horizons Is Released!</h2>
+          </div>
+        ) }
       </div>
     )
   }
 }
 
-const headerStyle = {
+const timerStyle = {
   color: '#ffffff',
-}
+};
+
+const headerStyle = {
+  fontSize: '44px',
+};
 
 export default Timer;

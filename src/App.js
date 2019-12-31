@@ -5,6 +5,7 @@ import Timer from './components/Timer';
 
 // resources
 import wallpaper from './resources/img/wallpaper.jpg';
+import github from './resources/img/github.png';
 import './resources/css/finkheavy/finkheavyfont.css';
 import date from './resources/txt/date.json';
 
@@ -24,26 +25,30 @@ class App extends Component {
   */
   render() {
     return (
-      <div style={ bgStyle } > 
-        <div style={ defStyle } >
-          <h2 style={ headerStyle } >There are</h2>
+      <div style={ bgStyle }> 
+      <a href="https://github.com/pinecat/aclaunch" target="_blank" rel="noopener noreferrer"><img src={ github } style={ imgStyle }/></a>
+        <div style={ defStyle }>
           <Timer cntdwnDate={ date.cntdwnDate } />
-          <h2 style={ headerStyle } >Until Animal Crossing New Horizons Is Released!</h2>
         </div>
       </div>
     );
   }
 }
 
-const headerStyle = {
-  fontSize: '44px',
+const imgStyle = {
+  position: 'absolute',
+  width: '40px',
+  height: '40px',
+  left: '0px',
+  bottom: '0px',
+  margin: '0px',
 }
 
 const defStyle = {
   textAlign: 'center',
   position: 'relative',
   marginTop: '300px',
-}
+};
 
 const bgStyle = {
   width: '1920px',
@@ -53,6 +58,6 @@ const bgStyle = {
   fontFamily: 'FinkHeavy',
   fontWeight: '900',
   overflow: 'hidden',
-}
+};
 
 export default App;
