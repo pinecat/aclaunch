@@ -104,11 +104,11 @@ class Timer extends Component {
       <div>
         { this.state.expired ? (
           <div>
-            <h2 style={ headerStyle }>Well what are you waiting for?  It's out!  Go buy the game!</h2>
+            <h2 style={ headerStyle }>Well, what are you waiting for?  It's out!  Go buy the game!</h2>
             <h3 style={{ color: '#000000' }}>
-              <a href="https://nintendo.com/games/switch" target="_blank" rel="noopener noreferrer">Nintendo</a>{ ' ' } | { ' ' }
-              <a href="https://amazon.com" target="_blank" rel="noopener noreferrer">Amazon</a>{ ' ' } | { ' ' }
-              <a href="https://gamestop.com" target="_blank" rel="noopener noreferrer">Gamestop</a>
+              <a href="https://www.nintendo.com/games/detail/animal-crossing-new-horizons-switch/" target="_blank" rel="noopener noreferrer">Nintendo</a>{ ' ' } | { ' ' }
+              <a href="https://www.amazon.com/dp/B07SL6ZXBL/ref=cm_sw_em_r_mt_dp_U_GGVcEb1TD7B5F" target="_blank" rel="noopener noreferrer">Amazon</a>{ ' ' } | { ' ' }
+              <a href="https://www.gamestop.com/video-games/switch/games/products/animal-crossing-new-horizons/10168434.html" target="_blank" rel="noopener noreferrer">Gamestop</a>
             </h3>
           </div>
         ) : (
@@ -117,7 +117,8 @@ class Timer extends Component {
             <h1 style={ timerStyle }>
               { this.state.time.days } Days { this.state.time.hours } Hours { this.state.time.minutes } Minutes { this.state.time.seconds } Seconds 
             </h1>
-            <h2 style={ headerStyle }>Until Animal Crossing New Horizons Is Released!</h2>
+            <h2 style={ headerStyle }>Until New Horizons Is Released!</h2>
+            <h3>Counting down to March 20, 2020.</h3>
           </div>
         ) }
       </div>

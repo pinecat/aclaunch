@@ -4,8 +4,10 @@ import React, { Component } from 'react';
 import Timer from './components/Timer';
 
 // resources
-import wallpaper from './resources/img/wallpaper.jpg';
+import wallpaper from './resources/img/pinecat.png';
+import reddit from './resources/img/reddit.png';
 import github from './resources/img/github.png';
+import discord from './resources/img/discord.png';
 import './resources/css/finkheavy/finkheavyfont.css';
 import date from './resources/txt/date.json';
 
@@ -26,7 +28,9 @@ class App extends Component {
   render() {
     return (
       <div style={ bgStyle }> 
-      <a href="https://github.com/pinecat/aclaunch" target="_blank" rel="noopener noreferrer"><img src={ github } style={ imgStyle }/></a>
+      <a href="https://reddit.com/r/AnimalCrossing" target="_blank" rel="noopener noreferrer"><img src={ reddit } alt="github" style={ imgStyle }/></a>
+      <a href="https://github.com/pinecat/aclaunch" target="_blank" rel="noopener noreferrer"><img src={ github } alt="github" style={ imgStyle }/></a>
+      <a href="https://discord.gg/9z9zNy7" target="_blank" rel="noopener noreferrer"><img src={ discord } alt="github" style={ imgStyle }/></a>
         <div style={ defStyle }>
           <Timer cntdwnDate={ date.cntdwnDate } />
         </div>
@@ -36,18 +40,19 @@ class App extends Component {
 }
 
 const imgStyle = {
-  position: 'absolute',
+  position: 'relative',
   width: '40px',
   height: '40px',
   left: '0px',
-  bottom: '0px',
   margin: '0px',
+  marginRight: '5px',
+  marginLeft: '5px',
 }
 
 const defStyle = {
   textAlign: 'center',
   position: 'relative',
-  marginTop: '300px',
+  marginTop: '420px',
 };
 
 const bgStyle = {
