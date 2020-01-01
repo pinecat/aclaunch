@@ -116,6 +116,8 @@ class Timer extends Component {
       let timerStyle = {
         color: '#ffffff',
         fontSize: '32px',
+        margin: '5px',
+        padding: '5px',
         paddingTop: '20px',
       };
       return (
@@ -143,7 +145,9 @@ class Timer extends Component {
     } else {
       let timerStyle = {
         color: '#ffffff',
-        fontSize: '44px',
+        fontSize: '42px',
+        margin: '5px',
+        padding: '5px',
       };
       return (
         <div>
@@ -159,7 +163,6 @@ class Timer extends Component {
             </div>
           ) : (
             <div>
-              <h2 style={ h2Style }>There are</h2>
               <h1 style={ timerStyle }>
                 { this.state.time.days } Days { this.state.time.hours } Hours { this.state.time.minutes } Minutes { this.state.time.seconds } Seconds 
               </h1>
