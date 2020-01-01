@@ -18,7 +18,7 @@ class Timer extends Component {
   */
   constructor(props) {
     super(props);                                                 // call super on props
-    this.timer = 0;                                               // timer for the countdown
+    this.timer = 1;                                               // timer for the countdown
     this.later = new Date(props.cntdwnDate).getTime();            // create future date using cntwnDate from props
     let time = this.calculate(this.later - new Date().getTime()); // calculate countdown for page load
     let expired = false;                                          // variable to hold expired
@@ -28,9 +28,19 @@ class Timer extends Component {
     this.state = {                                                // set the state (intialize the state)
       time: time,
       expired: expired,
+      width: window.innerWidth,
     }
     this.tick = this.tick.bind(this);                             // bind tick()
     this.calculate = this.calculate.bind(this);                   // bind calculate()
+    this.handleWindowResize = this.handleWindowResize.bind(this); // bind handleWindowResize()
+  }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowResize);
+  }
+
+  handleWindowResize() {
+    this.setState({ width: window.innerWidth });
   }
 
   /*
@@ -100,38 +110,71 @@ class Timer extends Component {
       void
   */
   render() {
-    return (
-      <div>
-        { this.state.expired ? (
-          <div>
-            <h2 style={ h2Style }>Well, what are you waiting for?  It's out!  Go buy the game!</h2>
-            <h3 style={{ color: '#000000' }}>
-              <a href="https://www.nintendo.com/games/detail/animal-crossing-new-horizons-switch/" target="_blank" rel="noopener noreferrer">Nintendo</a>{ ' ' } | { ' ' }
-              <a href="https://www.amazon.com/dp/B07SL6ZXBL/ref=cm_sw_em_r_mt_dp_U_GGVcEb1TD7B5F" target="_blank" rel="noopener noreferrer">Amazon</a>{ ' ' } | { ' ' }
-              <a href="https://www.gamestop.com/video-games/switch/games/products/animal-crossing-new-horizons/10168434.html" target="_blank" rel="noopener noreferrer">Gamestop</a>
-            </h3>
-          </div>
-        ) : (
-          <div>
-            <h2 style={ h2Style }>There are</h2>
-            <h1 style={ timerStyle }>
-              { this.state.time.days } Days { this.state.time.hours } Hours { this.state.time.minutes } Minutes { this.state.time.seconds } Seconds 
-            </h1>
-            <h2 style={ h2Style }>Until New Horizons Is Released!</h2>
-            <h3>Counting down to March 20, 2020.</h3>
-          </div>
-        ) }
-      </div>
-    )
+    const { width } = this.state;
+    const small = width <= 700;
+    if (small) {
+      let timerStyle = {
+        color: '#ffffff',
+        fontSize: '32px',
+        paddingTop: '20px',
+      };
+      return (
+        <div>
+          { this.state.expired ? (
+            <div>
+              <h2 style={ h2Style }>Well, what are you waiting for?  It's out!</h2>  
+              <h2 style={ h2Style }>Go buy the game!</h2>
+              <h3 style={{ color: '#000000' }}>
+                <a href="https://www.nintendo.com/games/detail/animal-crossing-new-horizons-switch/" target="_blank" rel="noopener noreferrer">Nintendo</a>{ ' ' } | { ' ' }
+                <a href="https://www.amazon.com/dp/B07SL6ZXBL/ref=cm_sw_em_r_mt_dp_U_GGVcEb1TD7B5F" target="_blank" rel="noopener noreferrer">Amazon</a>{ ' ' } | { ' ' }
+                <a href="https://www.gamestop.com/video-games/switch/games/products/animal-crossing-new-horizons/10168434.html" target="_blank" rel="noopener noreferrer">Gamestop</a>
+              </h3>
+            </div>
+          ) : (
+            <div>
+              <h1 style={ timerStyle }>
+                { this.state.time.days } Days { this.state.time.hours } Hours { this.state.time.minutes } Minutes { this.state.time.seconds } Seconds 
+              </h1>
+              <h3>Counting down to March 20, 2020.</h3>
+            </div>
+          ) }
+        </div>
+      )
+    } else {
+      let timerStyle = {
+        color: '#ffffff',
+        fontSize: '44px',
+      };
+      return (
+        <div>
+          { this.state.expired ? (
+            <div>
+              <h2 style={ h2Style }>Well, what are you waiting for?  It's out!</h2>  
+              <h2 style={ h2Style }>Go buy the game!</h2>
+              <h3 style={{ color: '#000000' }}>
+                <a href="https://www.nintendo.com/games/detail/animal-crossing-new-horizons-switch/" target="_blank" rel="noopener noreferrer">Nintendo</a>{ ' ' } | { ' ' }
+                <a href="https://www.amazon.com/dp/B07SL6ZXBL/ref=cm_sw_em_r_mt_dp_U_GGVcEb1TD7B5F" target="_blank" rel="noopener noreferrer">Amazon</a>{ ' ' } | { ' ' }
+                <a href="https://www.gamestop.com/video-games/switch/games/products/animal-crossing-new-horizons/10168434.html" target="_blank" rel="noopener noreferrer">Gamestop</a>
+              </h3>
+            </div>
+          ) : (
+            <div>
+              <h2 style={ h2Style }>There are</h2>
+              <h1 style={ timerStyle }>
+                { this.state.time.days } Days { this.state.time.hours } Hours { this.state.time.minutes } Minutes { this.state.time.seconds } Seconds 
+              </h1>
+              <h2 style={ h2Style }>Until New Horizons Is Released!</h2>
+              <h3>Counting down to March 20, 2020.</h3>
+            </div>
+          ) }
+        </div>
+      )
+    }
   }
 }
 
-const timerStyle = {
-  color: '#ffffff',
-};
-
 const h2Style = {
-  fontSize: '44px',
+  fontSize: '32px',
   padding: '0px',
   margin: '0px',
 };

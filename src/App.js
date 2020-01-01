@@ -6,7 +6,7 @@ import Social from './components/Social';
 
 // resources
 import wallpaper from './resources/img/pinecat.png';
-import smallpaper from './resources/img/green.jpg';
+import smallpaper from './resources/img/pinecatsmall.png';
 import './resources/css/finkheavy/finkheavyfont.css';
 import date from './resources/txt/date.json';
 
