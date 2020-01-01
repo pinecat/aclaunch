@@ -2,12 +2,11 @@
 // components
 import React, { Component } from 'react';
 import Timer from './components/Timer';
+import Social from './components/Social';
 
 // resources
 import wallpaper from './resources/img/pinecat.png';
-import reddit from './resources/img/reddit.png';
-import github from './resources/img/github.png';
-import discord from './resources/img/discord.png';
+import smallpaper from './resources/img/green.jpg';
 import './resources/css/finkheavy/finkheavyfont.css';
 import date from './resources/txt/date.json';
 
@@ -17,6 +16,22 @@ import date from './resources/txt/date.json';
   entry point of the react app
 */
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      width: window.innerWidth,
+    };
+    this.handleWindowResize = this.handleWindowResize.bind(this);
+  }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowResize);
+  }
+
+  handleWindowResize() {
+    this.setState({ width: window.innerWidth });
+  }
+
   /*
     render
       renders the DOM
@@ -26,43 +41,52 @@ class App extends Component {
       void
   */
   render() {
-    return (
-      <div style={ bgStyle }> 
-      <a href="https://reddit.com/r/AnimalCrossing" target="_blank" rel="noopener noreferrer"><img src={ reddit } alt="github" style={ imgStyle }/></a>
-      <a href="https://github.com/pinecat/aclaunch" target="_blank" rel="noopener noreferrer"><img src={ github } alt="github" style={ imgStyle }/></a>
-      <a href="https://discord.gg/9z9zNy7" target="_blank" rel="noopener noreferrer"><img src={ discord } alt="github" style={ imgStyle }/></a>
-        <div style={ defStyle }>
-          <Timer cntdwnDate={ date.cntdwnDate } />
+    const { width } = this.state;
+    const small = width <= 700;
+    if (small) {
+      return (
+        <div style={ textStyle }> 
+          <img src={ smallpaper } style={ bgStyle } alt="pinecat" />
+          <div style={ defStyle }>
+            <Timer cntdwnDate={ date.cntdwnDate } />
+          </div>
+          <Social />
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div style={ textStyle } > 
+          <img src={ wallpaper } style={ bgStyle } alt="pinecat" />
+          <div style={ defStyle }>
+            <Timer cntdwnDate={ date.cntdwnDate } />
+          </div>
+          <Social />
+        </div>
+      );
+    }
   }
 }
 
-const imgStyle = {
-  position: 'relative',
-  width: '40px',
-  height: '40px',
-  left: '0px',
-  margin: '0px',
-  marginRight: '5px',
-  marginLeft: '5px',
-}
-
 const defStyle = {
+  position: 'fixed',
+  top: '55%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   textAlign: 'center',
-  position: 'relative',
-  marginTop: '420px',
 };
 
 const bgStyle = {
-  width: '1920px',
-  height: '1080px',
-  margin: 0,
-  backgroundImage: `url(${ wallpaper })`,
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+};
+
+const textStyle = {
+  overflowX: 'hidden',
   fontFamily: 'FinkHeavy',
   fontWeight: '900',
-  overflow: 'hidden',
-};
+}
 
 export default App;
